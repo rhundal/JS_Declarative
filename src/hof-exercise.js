@@ -29,26 +29,26 @@ const calculateTotalImperative = (items, tax) => {
 /**********/
 
 // prices: (items: [{price: number}]) -> [number]
-const prices = undefined; // TODO - Implementation
+const prices = items => items.map(item => item.price);
+
 
 // sum: (numbers: [number]) -> number
-const sum = undefined; // TODO - Implementation
+const sum = numbers => numbers.reduce((accumulator, currVal) => accumulator + currVal, 0);
 
 // selectTaxable: (items: [{taxable: boolean}]) -> [{taxable: boolean}]
-const selectTaxable = undefined; // TODO - Implementation
+const selectTaxable = items => items.filter(item => item.taxable === true);
 
 // applyTax: (prices: [number], tax: number) -> [number]
-const applyTax = undefined; // TODO - Implementation
+const applyTax = (prices, tax) => prices.map(p => p * tax);
 
-// baseSum: TODO - Type Signature
+// baseSum: (items: [{price: number}]) => number
 const baseSum = items => sum(prices(items));
 
-// taxSum: TODO - Type Signature
+// taxSum: (items: [number], tax: number) -> number   
 const taxSum = (items, tax) => sum(applyTax(prices(selectTaxable(items)), tax));
 
-// calculateTotalDeclarative: TODO - Type Signature
-const calculateTotalDeclarative = (items, tax) =>
-  baseSum(items) + taxSum(items, Math.abs(tax));
+// calculateTotalDeclarative: (items, tax) -> number    
+const calculateTotalDeclarative = (items, tax) => baseSum(items) + taxSum(items, Math.abs(tax));
 
 export default {
   prices,
